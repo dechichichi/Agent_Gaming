@@ -1,0 +1,15 @@
+ 
+ service:
+    wiliwili_mysql:
+        image: mysql:8.0
+        container_name: agent-game-mysql
+        restart: always
+        env_file:
+          - "./env/mysql.env"
+        ports:
+          - "3306:3306"
+        networks:
+          - wiliwili
+        volumes:
+          - ../config/sql:/docker-entrypoint-initdb.d
+          - ./data/mysql:/var/lib/mysql

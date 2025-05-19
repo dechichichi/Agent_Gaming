@@ -1,17 +1,12 @@
 import mysql.connector
 from datetime import datetime, timedelta
 import json
+import yaml
 
-# 数据库配置
-DB_CONFIG = {
-    'host': 'dechichichi.rwlb.rds.aliyuncs.com',
-    'port': 3306,
-    'user': 'lyan',
-    'password': 'Ly05985481282',
-    'database': 'game_agent',
-    'charset': 'utf8mb4',
-    'connect_timeout': 30
-}
+# 加载配置文件
+with open('config/config.yml', 'r', encoding='utf-8') as f:
+    config = yaml.safe_load(f)
+DB_CONFIG = config['DB_CONFIG']
 
 def create_procedure_if_not_exists(cursor, procedure_name, procedure_sql):
     """

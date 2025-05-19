@@ -2,18 +2,12 @@ import json
 import pymysql
 from pymysql.cursors import DictCursor
 from datetime import datetime
+import yaml
 
-# 数据库配置
-DB_CONFIG = {
-    'host': 'dechichichi.rwlb.rds.aliyuncs.com',
-    'port': 3306,
-    'user': 'lyan',
-    'password': 'Ly05985481282',
-    'database': 'game_agent',
-    'charset': 'utf8mb4',
-    'cursorclass': DictCursor,
-    'connect_timeout': 30
-}
+# 加载配置文件
+with open('config/config.yml', 'r', encoding='utf-8') as f:
+    config = yaml.safe_load(f)
+DB_CONFIG = config['DB_CONFIG']
 
 # JSON 文件路径
 JSON_FILE_PATH = './utils/user_event_log.json'

@@ -1,0 +1,9 @@
+DB_CONFIG:
+  host: 'dechichichi.rwlb.rds.aliyuncs.com'
+  port: 3306
+  user: 'lyan'
+  password: 'Ly05985481282'
+  database: 'game_agent'
+  charset: 'utf8mb4'
+  cursorclass: 'pymysql.cursors.DictCursor'
+  connect_timeout: 30

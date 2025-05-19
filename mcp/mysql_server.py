@@ -1,16 +1,17 @@
 import mysql.connector
 from mysql.connector import Error
 import mcp
+import yaml
+
+# 加载配置文件
+with open('config/config.yml', 'r', encoding='utf-8') as f:
+    config = yaml.safe_load(f)
+DB_CONFIG = config['DB_CONFIG']
 
 @mcp.tool()
 def connect_to_database():
     try:
-        connection = mysql.connector.connect(
-            host='localhost',
-            database='your_database_name',  # 替换为实际的数据库名称
-            user='your_username',           # 替换为实际的用户名
-            password='your_password'        # 替换为实际的密码
-        )
+        connection = mysql.connector.connect(**DB_CONFIG)
         if connection.is_connected():
             print("Successfully connected to the database.")
             return connection

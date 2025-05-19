@@ -3,16 +3,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
+import yaml
 
-# 数据库配置
-DB_CONFIG = {
-    'host': 'dechichichi.rwlb.rds.aliyuncs.com',
-    'port': 3306,
-    'user': 'lyan',
-    'password': 'Ly05985481282',
-    'database': 'game_agent',
-    'charset': 'utf8mb4'
-}
+# 加载配置文件
+with open('config/config.yml', 'r', encoding='utf-8') as f:
+    config = yaml.safe_load(f)
+DB_CONFIG = config['DB_CONFIG']
 
 def fetch_data():
     conn = pymysql.connect(**DB_CONFIG)

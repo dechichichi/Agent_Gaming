@@ -1,18 +1,14 @@
 import pymysql
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+import yaml
 
 class GamingAgent:
     def __init__(self):
-        # 数据库配置
-        self.DB_CONFIG = {
-            'host': 'dechichichi.rwlb.rds.aliyuncs.com',
-            'port': 3306,
-            'user': 'lyan',
-            'password': 'Ly05985481282',
-            'database': 'game_agent',
-            'charset': 'utf8mb4'
-        }
+        # 加载配置文件
+        with open('config/config.yml', 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+        self.DB_CONFIG = config['DB_CONFIG']
         self.model = self.train_model()
 
     def fetch_data(self):
