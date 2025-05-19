@@ -1,5 +1,225 @@
-核心是agent+mcp
-比如你给mysql做个mcpserver就行了
+# Agent Gaming
+
+一个基于AI的游戏用户行为分析和预测系统，用于游戏运营和用户留存优化。
+
+## 项目概述
+
+Agent Gaming 是一个综合性的游戏用户行为分析系统，集成了用户行为分析、流失预测、付费预测等功能。系统采用模块化设计，包含智能Agent、预测模型、数据分析工具等多个组件。
+
+### 核心功能
+
+- 用户行为分析
+- 流失风险预测
+- 付费行为预测
+- 智能干预推荐
+- 数据可视化展示
+
+## 系统架构
+
+```
+Agent Gaming
+├── agent/           # 智能Agent模块
+│   ├── agent.py     # Agent核心实现
+│   ├── tools.py     # Agent工具集
+│   └── prompt.py    # 提示词模板
+├── model/           # 预测模型模块
+│   ├── lose_model.py    # 流失预测模型
+│   └── charge_model.py  # 付费预测模型
+├── utils/           # 工具类模块
+│   ├── db.py        # 数据库工具
+│   ├── data_processor.py # 数据处理工具
+│   └── metrics.py   # 评估指标工具
+├── api/             # API接口模块
+├── config/          # 配置文件
+├── docs/            # 文档
+├── tests/           # 测试用例
+└── examples/        # 示例代码
+```
+
+## 快速开始
+
+### 环境要求
+
+- Python 3.8+
+- MySQL 5.7+
+- Redis 6.0+
+
+### 安装步骤
+
+1. 克隆项目
+```bash
+git clone https://github.com/yourusername/Agent_Gaming.git
+cd Agent_Gaming
+```
+
+2. 安装依赖
+```bash
+pip install -r requirements.txt
+```
+
+3. 配置环境变量
+```bash
+cp config/env.example .env
+# 编辑 .env 文件，设置必要的环境变量
+```
+
+4. 初始化数据库
+```bash
+python scripts/init_db.py
+```
+
+### 运行服务
+
+1. 启动API服务
+```bash
+python api/api.py
+```
+
+2. 启动Agent服务
+```bash
+python agent/main.py
+```
+
+## 功能模块
+
+### 智能Agent模块
+
+- 用户行为分析
+- 风险预警
+- 干预策略生成
+- 效果评估
+
+### 预测模型模块
+
+- 流失预测模型
+  - 基于用户行为序列
+  - 多维度特征分析
+  - 实时预测能力
+
+- 付费预测模型
+  - 用户价值评估
+  - 付费意愿预测
+  - 个性化推荐
+
+### 工具类模块
+
+- 数据库工具
+  - 连接池管理
+  - 查询优化
+  - 事务处理
+
+- 数据处理工具
+  - 数据清洗
+  - 特征工程
+  - 序列处理
+
+- 评估指标工具
+  - 模型评估
+  - 业务指标
+  - 效果分析
+
+## 配置说明
+
+### 环境变量
+
+主要环境变量配置：
+```env
+# 数据库配置
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=game_agent
+
+# 模型配置
+MODEL_DIR=models
+MODEL_VERSION=1.0.0
+
+# Agent配置
+AGENT_MODEL=gpt-4-turbo
+AGENT_TEMPERATURE=0
+AGENT_MAX_TOKENS=2000
+```
+
+### 配置文件
+
+- `config/config.yml`: 主配置文件
+- `config/model_config.yml`: 模型配置文件
+- `config/agent_config.yml`: Agent配置文件
+
+## 开发指南
+
+### 代码规范
+
+- 遵循PEP 8规范
+- 使用类型注解
+- 编写单元测试
+- 保持文档更新
+
+### 测试
+
+运行测试：
+```bash
+python -m pytest tests/
+```
+
+### 文档
+
+- API文档：`docs/api.md`
+- 开发文档：`docs/development.md`
+- 部署文档：`docs/deployment.md`
+
+## 部署
+
+### Docker部署
+
+1. 构建镜像
+```bash
+docker build -t agent-gaming .
+```
+
+2. 运行容器
+```bash
+docker-compose up -d
+```
+
+### 服务器部署
+
+1. 安装依赖
+```bash
+pip install -r requirements.txt
+```
+
+2. 配置服务
+```bash
+cp config/env.example .env
+# 编辑配置文件
+```
+
+3. 启动服务
+```bash
+python api/api.py
+python agent/main.py
+```
+
+## 贡献指南
+
+1. Fork 项目
+2. 创建特性分支
+3. 提交更改
+4. 推送到分支
+5. 创建 Pull Request
+
+## 许可证
+
+MIT License
+
+## 联系方式
+
+- 项目维护者：[Your Name]
+- 邮箱：[your.email@example.com]
+- 项目地址：[https://github.com/yourusername/Agent_Gaming]
+
 第一、为什么会出现 MCP？
 如果你开发了一个 AI 应用，无论是 ChatBot 还是复杂的 Agent，都不会仅限于简单的 LLM 对话。很多时候，你需要与外部世界连接，以访问数据源或使用工具。例如：
 
@@ -7,7 +227,7 @@
 访问本地文件；
 访问数据库结构，以便更好地让 AI 参与编程；
 调用 CRM 的 API 以驱动智能客服流程。
-在这种情况下，你需要连接不同的对象，使用不同的接口协议。你可能需要熟悉 SQL、HTTP 调用、Playwright 等接口，甚至还需要使用搜索引擎、访问云存储、调用第三方开放API等。这些都涉及大量的“粘合”工作。
+在这种情况下，你需要连接不同的对象，使用不同的接口协议。你可能需要熟悉 SQL、HTTP 调用、Playwright 等接口，甚至还需要使用搜索引擎、访问云存储、调用第三方开放API等。这些都涉及大量的"粘合"工作。
 
 ![alt text](image-1.png)
 ![alt text](image-2.png)
@@ -17,7 +237,7 @@
 这种设计范式在软件系统中其实很常见，比如：一些大模型 API 网关会将不同厂家的大模型协议转化为统一的 OpenAI 兼容协议，方便应用接入。它的具体意义主要体现在以下几点：
 
 简化 LLM 应用：无需适配各种私有协议，只需学会连接 MCP Server 即可。
-快速扩展 LLM 应用：随时可以“插拔”新的 MCP Server，需要更多功能时，简单添加即可。
+快速扩展 LLM 应用：随时可以"插拔"新的 MCP Server，需要更多功能时，简单添加即可。
 快速适应变化：如果外部资源的接口发生变化，只需在对应的 MCP Server 上进行修改，所有连接的 LLM 应用都能无缝适应。
 构建新的 AI 能力共享生态：通过共享 MCP Server，新的 LLM 应用能够快速获得各种工具，形成一种新的合作体系，从而提升整体的效用。
 ![alt text](image-3.png)

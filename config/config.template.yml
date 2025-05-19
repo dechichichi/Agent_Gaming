@@ -1,0 +1,60 @@
+# 数据库配置
+DB_CONFIG:
+  host: ${DB_HOST}
+  port: ${DB_PORT}
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
+  database: ${DB_NAME}
+  charset: utf8mb4
+  cursorclass: pymysql.cursors.DictCursor
+  connect_timeout: 30
+
+# 模型配置
+MODEL_CONFIG:
+  lose_model:
+    name: GameName_7to14_train_val_lose_20250401_20250430
+    train_table: sequential_output_lose
+    features:
+      - event_list
+      - max_level
+      - max_viplevel
+      - num_event
+      - stats_item_list
+      - stats_event_list
+    target: target
+    parameters:
+      window_size: 100
+      sequence_length: 3000
+      batch_size: 128
+      learning_rate: 0.002
+      max_epoch: 5
+
+  charge_model:
+    name: GameName_charge_prediction
+    train_table: sequential_output_charge
+    features:
+      - event_list
+      - max_level
+      - max_viplevel
+      - num_event
+      - stats_item_list
+      - stats_event_list
+    target: target
+    parameters:
+      n_estimators: 100
+      random_state: 42
+
+# Agent配置
+AGENT_CONFIG:
+  llm:
+    model: gpt-4-turbo
+    temperature: 0
+    max_tokens: 2000
+  max_thought_steps: 10
+  memory_limit: 4000
+
+# 日志配置
+LOG_CONFIG:
+  level: INFO
+  directory: logs
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s' 

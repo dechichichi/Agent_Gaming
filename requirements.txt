@@ -1,0 +1,28 @@
+# 数据库
+pymysql==1.1.0
+SQLAlchemy==2.0.27
+
+# 数据处理
+pandas==2.2.0
+numpy==1.26.3
+scikit-learn==1.4.0
+
+# 配置
+pyyaml==6.0.1
+python-dotenv==1.0.1
+
+# 日志
+loguru==0.7.2
+
+# 测试
+pytest==8.0.0
+pytest-cov==4.1.0
+
+# 类型检查
+mypy==1.8.0
+types-PyYAML==6.0.12.12
+
+# 代码质量
+black==24.1.1
+flake8==7.0.0
+isort==5.13.2 
