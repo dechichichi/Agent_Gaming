@@ -1,5 +1,9 @@
 # Agent Gaming
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE-APACHE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE-GPL)
+[![License: BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE-BSD)
+
 一个基于AI的游戏用户行为分析和预测系统，用于游戏运营和用户留存优化。
 
 ## 项目概述
@@ -35,6 +39,48 @@ Agent Gaming
 ├── tests/           # 测试用例
 └── examples/        # 示例代码
 ```
+
+## 技术栈
+
+### 后端技术
+- **Python 3.8+**: 主要开发语言
+- **MySQL 5.7+**: 主数据库，用于存储用户行为数据和模型训练数据
+- **Redis 6.0+**: 缓存层，用于提高数据访问性能
+- **PolarDB for AI**: 用于模型训练和推理的AI数据库
+- **Docker**: 容器化部署
+
+### AI/ML技术
+- **BST (Behavior Sequence Transformer)**: 核心预测模型
+  - 序列长度: 100-3000
+  - 批量大小: 128
+  - 学习率: 0.002
+  - 多注意力头机制
+- **Transformer架构**: 用于行为序列分析
+- **分类算法**: 用于流失预测
+- **回归算法**: 用于付费预测
+
+### 数据处理
+- **数据清洗工具**: 用于处理原始用户行为数据
+- **特征工程**: 
+  - 行为序列特征
+  - 统计特征
+  - 数值特征
+- **数据归一化**: 用于模型训练前的数据预处理
+
+### 部署与运维
+- **Docker Compose**: 服务编排
+- **环境变量配置**: 用于不同环境的配置管理
+- **API服务**: RESTful接口
+- **异步任务处理**: 用于模型训练和预测
+
+### 监控与评估
+- **模型评估指标**:
+  - F1 Score
+  - Precision
+  - Recall
+  - AUC
+- **业务指标监控**
+- **模型效果评估工具**
 
 ## 快速开始
 
@@ -212,13 +258,14 @@ python agent/main.py
 
 ## 许可证
 
-MIT License
+本项目采用多重许可证：
 
-## 联系方式
+- [Apache License 2.0](LICENSE-APACHE)
+- [GNU General Public License v3.0](LICENSE-GPL)
+- [BSD 3-Clause License](LICENSE-BSD)
 
-- 项目维护者：[Your Name]
-- 邮箱：[your.email@example.com]
-- 项目地址：[https://github.com/yourusername/Agent_Gaming]
+你可以根据你的需求选择使用其中任何一个许可证。每个许可证的具体条款和条件请查看相应的许可证文件。
+
 
 第一、为什么会出现 MCP？
 如果你开发了一个 AI 应用，无论是 ChatBot 还是复杂的 Agent，都不会仅限于简单的 LLM 对话。很多时候，你需要与外部世界连接，以访问数据源或使用工具。例如：
