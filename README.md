@@ -384,39 +384,11 @@ go test -tags=integration ./...
 - **数据库扩展**: 读写分离支持
 - **缓存扩展**: Redis集群支持
 
-## 🤝 贡献指南
-
-1. Fork 项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
-
-### 代码规范
-
-- 遵循 Go 官方代码规范
-- 使用 `gofmt` 格式化代码
-- 编写单元测试
-- 添加必要的注释
 
 ## 📄 许可证
 
-本项目采用多重许可证：
 
 - [Apache License 2.0](LICENSE-APACHE)
 - [GNU General Public License v3.0](LICENSE-GPL)
 - [BSD 3-Clause License](LICENSE-BSD)
 
-## 📞 联系方式
-
-- 项目主页: https://github.com/yourusername/Agent_Gaming
-- 问题反馈: https://github.com/yourusername/Agent_Gaming/issues
-- 邮箱: your-email@example.com
-
-## 🙏 致谢
-
-感谢所有为这个项目做出贡献的开发者和用户！
-
----
-
-**注意**: 这是一个基于Go语言的高性能游戏用户行为分析和预测系统，具备企业级应用的所有特性。 
