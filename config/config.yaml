@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  read_timeout: 15s
+  write_timeout: 15s
+  idle_timeout: 60s
+
+database:
+  host: localhost
+  port: 3306
+  user: root
+  password: ""
+  dbname: agent_gaming
+  charset: utf8mb4
+  max_open: 100
+  max_idle: 10
+
+redis:
+  host: localhost
+  port: 6379
+  password: ""
+  db: 0
+  pool_size: 10
+
+log:
+  level: info
+  file: logs/app.log
+
+jwt:
+  secret: your-secret-key-change-in-production
+  expiration: 24h
+
+agent:
+  model: gpt-4-turbo
+  temperature: 0.0
+  max_tokens: 2000
+  api_key: "" 
